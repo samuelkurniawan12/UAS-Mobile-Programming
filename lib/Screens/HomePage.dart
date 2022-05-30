@@ -2,11 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:home_rental/Models/Datamodel/PlaceModel.dart';
-import 'package:home_rental/Models/ViewModel/BestOffer.dart';
-import 'package:home_rental/Models/ViewModel/RecentAddedHome.dart';
-import 'package:home_rental/Models/constants.dart';
-import 'package:home_rental/utils/user_preferences.dart';
+import 'package:flutter_uts/Screens/login.dart';
+import 'package:flutter_uts/models/Datamodel/PlaceModel.dart';
+import 'package:flutter_uts/models/ViewModel/BestOffer.dart';
+import 'package:flutter_uts/models/ViewModel/RecentAddedHome.dart';
+import 'package:flutter_uts/models/constants.dart';
+import 'package:flutter_uts/utils/user_preferences.dart';
+import 'package:flutter_uts/models/user.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -17,10 +19,12 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final user = UserPreferences.myUser;
+    final icon = CupertinoIcons.arrow_right_to_line;
     return Scaffold(
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
+
           child: ListView(
             shrinkWrap: true,
             // crossAxisAlignment: CrossAxisAlignment.start,
@@ -47,9 +51,16 @@ class _HomePageState extends State<HomePage> {
                           )
                         ],
                       ),
-                      child: Icon(
-                        CupertinoIcons.rhombus_fill,
-                        color: kCustomBlackColor,
+                      child: IconButton(
+                        icon: Icon(icon),
+                        color: Colors.black45,
+                        onPressed: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (_) => LoginPage(),
+                            ),
+                          );
+                        },
                       ),
                     ),
                     Container(
